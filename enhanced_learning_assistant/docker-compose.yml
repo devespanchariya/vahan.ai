@@ -1,10 +1,13 @@
-version: '3.8'
+version: '3'
+
 services:
-  interactive-learning-assistant:
+  app:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL=llama3-8b-8192
     volumes:
-      - .:/app
-    env_file:
-      - .env
+      - ./src:/app/src
+    restart: always
